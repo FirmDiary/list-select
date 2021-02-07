@@ -1,0 +1,246 @@
+.list-select {
+	.header {
+		left: 0;
+		position: fixed;
+		width: 100%;
+		border-top: 2rpx solid #ebebeb;
+		z-index: 999;
+	}
+	.list {
+		width: 100%;
+		min-height: calc(100vh - 60rpx);
+		&-index-header {
+			background-color: #f6f6f6;
+			font-size: 22rpx;
+			color: #434343;
+			padding: 12rpx 0 12rpx 30rpx;
+		}
+	}
+	.index {
+		color: $color-light;
+		position: fixed;
+		right: 10rpx;
+		top: 214rpx;
+		text-align: center;
+		padding: 10rpx 4rpx;
+		font-size: 20rpx;
+		line-height: 36rpx;
+		border-radius: 28rpx;
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	.search {
+		background-color: #fff;
+		padding: 30rpx 30rpx 14rpx 30rpx;
+		z-index: 9999999;
+
+		&-before {
+			@include flex;
+			justify-content: center;
+			width: 100%;
+		}
+
+		&-input {
+			height: 60rpx;
+			background: #f6f8fa;
+			border-radius: 30rpx;
+			padding: 0 40rpx;
+			color: #ccc;
+			box-sizing: border-box;
+			@include flex;
+			font-size: 28rpx;
+
+			input {
+				color: #333;
+				font-size: 28rpx;
+			}
+
+			.iconfont {
+				font-size: 38rpx;
+			}
+		}
+
+		&-history {
+			padding: 0 30rpx;
+			padding-bottom: 0;
+			margin-top: -50rpx;
+			background-color: #fff;
+
+			&-header {
+				@include normalText;
+				@include flex;
+				margin-bottom: 28rpx;
+				padding-top: 20rpx;
+
+				.iconfont {
+					color: #cbcbcb;
+				}
+			}
+
+			&-title {
+				color: #232323;
+				font-size: 26rpx;
+			}
+
+			&-box {
+				margin-right: 26rpx;
+				font-size: 22rpx;
+				color: #434343;
+				padding: 14rpx 40rpx;
+				background-color: #f2f4fa;
+				border-radius: 6rpx;
+				display: inline-block;
+				margin-bottom: 20rpx;
+			}
+		}
+	}
+
+	.filter {
+		background-color: #fff;
+
+		&-box {
+			@include flex;
+			@include normalText;
+			height: 84rpx;
+			justify-content: flex-end;
+			z-index: 998;
+			position: relative;
+
+			& > view {
+				@include flex;
+				justify-content: center;
+				flex: 1;
+				height: 100%;
+
+				.iconfont {
+					font-size: 16rpx;
+					margin-left: 6rpx;
+					color: #cbcbcb;
+				}
+			}
+
+			.on {
+				color: $color-light;
+
+				.iconfont {
+					color: $color-light;
+				}
+			}
+		}
+
+		&-content {
+			background-color: #ffffff;
+			border-top: 1rpx solid #ebebeb;
+			max-height: 80vh;
+			overflow: auto;
+
+			&-block {
+				padding: 30rpx 30rpx 14rpx 30rpx;
+
+				& > view {
+					font-size: 22rpx;
+					padding: 16rpx 30rpx;
+					margin-right: 26rpx;
+					border-radius: 6rpx;
+					margin-bottom: 30rpx;
+					display: inline-block;
+				}
+
+				&-item-default {
+					color: #232323;
+					background-color: #f8f8f8;
+				}
+
+				&-item-active {
+					color: $color-light;
+					background-color: rgba($color: $color-light, $alpha: 0.3);
+				}
+			}
+
+			&-list {
+				padding: 0rpx 30rpx;
+
+				@include normalText;
+				& > view {
+					width: 100%;
+					padding: 20rpx 0;
+					display: flex;
+					border-bottom: 1rpx solid #ebebeb;
+					padding: 32rpx 36rpx 26rpx 0;
+					box-sizing: border-box;
+				}
+
+				&-item-default {
+					text {
+						width: 90%;
+						display: inline-block;
+					}
+				}
+
+				&-item-active {
+					color: $color-light;
+
+					text {
+						display: inline-block;
+					}
+				}
+			}
+			&-multiplex {
+				padding-top: 30rpx;
+				&-title {
+					margin-left: 30rpx;
+					@include text-main;
+					font-size: 24rpx;
+				}
+			}
+		}
+
+		&-title {
+			padding: 24rpx 0;
+			font-size: 32rpx;
+			font-weight: 400;
+			color: #232323;
+		}
+
+		&-detail {
+			padding: 10rpx 30rpx;
+
+			& > view {
+				padding: 10rpx 30rpx;
+				border-radius: 40rpx;
+				margin-right: 20rpx;
+				margin-top: 20rpx;
+				display: inline-block;
+				font-size: 28rpx;
+			}
+
+			&-item-active {
+				background-color: #d1372c;
+				color: #ffffff;
+			}
+
+			&-item-default {
+				background-color: #ffffff;
+				color: #666666;
+			}
+		}
+
+		.icon-gou1 {
+			color: $color-light;
+		}
+	}
+
+	.out-mask {
+		position: fixed;
+		background-color: rgba(0, 0, 0, 0.3);
+		width: 100%;
+		height: 100%;
+		z-index: 998;
+	}
+
+	.search-after-border {
+		height: 12rpx;
+		background-color: #f6f6f6;
+		margin-top: -2rpx;
+	}
+}
