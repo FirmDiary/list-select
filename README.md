@@ -18,8 +18,9 @@ export default {
 <list-select-online pageKey="staff" :filters="filters" :searchPlaceHolder="search_placeHolder" @search="search" @filter="filter">
     
 			<block v-if="list.length">
-                <Staff v-for="(item, index) in list" :key="index" :staff="item" @tap="select(item)"></Staff>
-            </block>
+				<Staff v-for="(item, index) in list" :key="index" :staff="item" @tap="select(item)">
+                </Staff>
+			</block>
 
 			<no-data v-else :tip="Object.keys(filter_conditions).length || search_value ? '换个条件试试?' : ''"></no-data>
 </list-select-online>
