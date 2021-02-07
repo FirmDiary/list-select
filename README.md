@@ -1,9 +1,6 @@
-@Author: Azal
-@Email: Zhaozw5@163.com
+## Uniapp列表与筛选/搜索/拼音索引🌌
 
-## 列表筛选/搜索/拼音索引
-
-*简易版文档，仅供交流学习，插件版后续看情况出，欢迎大伙挑刺*
+*简易版文档，仅供交流学习，插件版后续看情况出，欢迎各位大神指导*
 
 ### 引入
 ``` javascript
@@ -101,151 +98,151 @@ export default {
 
 
 ```vue
-	   <list-select-online
-			pageKey="card"
-			:filters="filters"
-			:searchPlaceHolder="search_placeHolder"
-			:useSearch="user_search"
-			@search="search"
-			@filter="filter"
-		>
-            <!-- item模板 -->
-			<block v-if="list.length"><Card v-for="(item, index) in list" :key="index" :card="item" @tap="select(item)"></Card></block>
-			<no-data v-else :tip="Object.keys(filter_conditions).length || search_value ? '换个条件试试?' : ''"></no-data>
-		</list-select-online>
+<list-select-online
+    pageKey="card"
+    :filters="filters"
+    :searchPlaceHolder="search_placeHolder"
+    :useSearch="user_search"
+    @search="search"
+    @filter="filter"
+>
+    <!-- item模板 -->
+    <block v-if="list.length"><Card v-for="(item, index) in list" :key="index" :card="item" @tap="select(item)"></Card></block>
+    <no-data v-else :tip="Object.keys(filter_conditions).length || search_value ? '换个条件试试?' : ''"></no-data>
+</list-select-online>
 
 ```
 
 ```javascript
-      data() {
-		return {
-			init_over: false,
-			user_search: true,
-			search_placeHolder: '可搜索会员名或手机号',
-			filters: [],
+data() {
+    return {
+        init_over: false,
+        user_search: true,
+        search_placeHolder: '可搜索会员名或手机号',
+        filters: [],
 
-			search_value: '',
-			filter_conditions: {}, //筛选框选择的筛选条件
-			fixed_conditions: {}, //固定筛选 外部传入
-		};
-	 },
+        search_value: '',
+        filter_conditions: {}, //筛选框选择的筛选条件
+        fixed_conditions: {}, //固定筛选 外部传入
+    };
+ },
 
-      //初始化filters      
-       this.filters = [
-				{
-					title: '状态',
-					field: 'flag', //通过某个字段匹配
-					style: 'block',
-					options: Object.values(CARD_FLAG),
-				},
-				{
-					title: '卡类型',
-					field: 'type', //通过某个字段匹配
-					style: 'line',
-					options: [
-						{
-							label: '期限卡',
-							value: 1,
-						},
-						{
-							label: '次数卡',
-							value: 2,
-						},
-						{
-							label: '储值卡',
-							value: 3,
-						},
-					],
-				},
-				{
-					title: '支持功能',
-					field: 'allow',
-					style: 'block',
-					options: [
-						{
-							label: '出入场',
-							value: 1,
-						},
-						{
-							label: '团课',
-							value: 2,
-						},
-						{
-							label: '私教',
-							value: 3,
-						},
-						{
-							label: '储物柜',
-							value: 4,
-						},
-					],
-				},
-			];
+//初始化filters      
+this.filters = [
+    {
+        title: '状态',
+        field: 'flag', //通过某个字段匹配
+        style: 'block',
+        options: Object.values(CARD_FLAG),
+    },
+    {
+        title: '卡类型',
+        field: 'type', //通过某个字段匹配
+        style: 'line',
+        options: [
+            {
+                label: '期限卡',
+                value: 1,
+            },
+            {
+                label: '次数卡',
+                value: 2,
+            },
+            {
+                label: '储值卡',
+                value: 3,
+            },
+        ],
+    },
+    {
+        title: '支持功能',
+        field: 'allow',
+        style: 'block',
+        options: [
+            {
+                label: '出入场',
+                value: 1,
+            },
+            {
+                label: '团课',
+                value: 2,
+            },
+            {
+                label: '私教',
+                value: 3,
+            },
+            {
+                label: '储物柜',
+                value: 4,
+            },
+        ],
+    },
+];
 
-			let multiplex_filter = {
-				title: '更多',
-				style: 'multiplex',
-				children: [
-					{
-						title: '多人共用',
-						field: 'support_multiple', //通过某个字段匹配
-						style: 'line',
-						options: [
-							{
-								label: '支持',
-								value: 1,
-							},
-							{
-								label: '不支持',
-								value: 0,
-							},
-						],
-					},
-					{
-						title: '卡名称',
-						field: 'category_id',
-						style: 'block',
-						options_config: {
-							type: 'dynamic',
-							function: 'getCardCategoryNames',
-							cache: true,
-							label_field: 'name',
-							value_field: 'id',
-						},
-						options: [],
-					},
-				],
-			};
-			
-			
-			this.filters.push(multiplex_filter)
-			
-			
-			
-			
-			
-		select(item) {
-			this.$base.navigateTo('./detail?id=' + item.id);
-		},
+let multiplex_filter = {
+    title: '更多',
+    style: 'multiplex',
+    children: [
+        {
+            title: '多人共用',
+            field: 'support_multiple', //通过某个字段匹配
+            style: 'line',
+            options: [
+                {
+                    label: '支持',
+                    value: 1,
+                },
+                {
+                    label: '不支持',
+                    value: 0,
+                },
+            ],
+        },
+        {
+            title: '卡名称',
+            field: 'category_id',
+            style: 'block',
+            options_config: {
+                type: 'dynamic',
+                function: 'getCardCategoryNames',
+                cache: true,
+                label_field: 'name',
+                value_field: 'id',
+            },
+            options: [],
+        },
+    ],
+};
 
-		search(e) {
-			this.search_value = e.value;
-			this._initData();//重新加载数据
-		},
 
-		filter(e) {
-			this.filter_conditions = e.value;
-			this._initData();//重新加载数据
-		},
-            
-        //动态加载options的方法
-        getCardCategoryNames() {
-			return new Promise(resolve => {
-				this.$go('options/card-category').then(res => {
-					resolve(res.data.data || []);
-				});
-			});
-		},
+this.filters.push(multiplex_filter)
+
+
+
+
+
+select(item) {
+    this.$base.navigateTo('./detail?id=' + item.id);
+},
+
+search(e) {
+    this.search_value = e.value;
+    this._initData();//重新加载数据
+},
+
+filter(e) {
+    this.filter_conditions = e.value;
+    this._initData();//重新加载数据
+},
+
+//动态加载options的方法
+getCardCategoryNames() {
+    return new Promise(resolve => {
+        this.$go('options/card-category').then(res => {
+            resolve(res.data.data || []);
+        });
+    });
+},
 ```
 
 
@@ -253,37 +250,37 @@ export default {
 - Ⅱ
 
   ```javascript
-              一个日期选择选项配置
-              let filters = [{
-  					title: '日期',
-  					field: 'date_type',
-  					related_fields: ['date_start', 'date_end'],
-  					style: 'line',
-  					options_config: {
-  						type: 'static',
-  						default: null,
-  						unshift_all: true,
-  					},
-  					options: [{
-  							label: '今日',
-  							value: 1,
-  						},
-  						{
-  							label: '本周',
-  							value: 2,
-  						},
-  						{
-  							label: '本月',
-  							value: 3,
-  						},
-  						{
-  							label: '指定日期段',
-  							value: -1,
-  							type: 'component',
-  							component: 'pyh-rdtpicker',
-  						},
-  					],
-  				}]
+  一个日期选择选项配置
+  let filters = [{
+          title: '日期',
+          field: 'date_type',
+          related_fields: ['date_start', 'date_end'],
+          style: 'line',
+          options_config: {
+              type: 'static',
+              default: null,
+              unshift_all: true,
+          },
+          options: [{
+                  label: '今日',
+                  value: 1,
+              },
+              {
+                  label: '本周',
+                  value: 2,
+              },
+              {
+                  label: '本月',
+                  value: 3,
+              },
+              {
+                  label: '指定日期段',
+                  value: -1,
+                  type: 'component',
+                  component: 'pyh-rdtpicker',
+              },
+          ],
+      }]
   ```
 
   
@@ -306,7 +303,5 @@ export default {
 
 #### 引用组件
 
-[日期区间picker]: https://ext.dcloud.net.cn/plugin?id=435
-
-
+- <u> _[日期区间picker](https://ext.dcloud.net.cn/plugin?id=435)</u>
 
