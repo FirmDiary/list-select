@@ -250,39 +250,39 @@ getCardCategoryNames() {
 
 - Ⅱ
 
-  ```javascript
-  一个日期选择选项配置
-  let filters = [{
-          title: '日期',
-          field: 'date_type',
-          related_fields: ['date_start', 'date_end'],
-          style: 'line',
-          options_config: {
-              type: 'static',
-              default: null,
-              unshift_all: true,
+```javascript
+一个日期选择选项配置
+let filters = [{
+      title: '日期',
+      field: 'date_type',
+      related_fields: ['date_start', 'date_end'],
+      style: 'line',
+      options_config: {
+          type: 'static',
+          default: null,
+          unshift_all: true,
+      },
+      options: [{
+              label: '今日',
+              value: 1,
           },
-          options: [{
-                  label: '今日',
-                  value: 1,
-              },
-              {
-                  label: '本周',
-                  value: 2,
-              },
-              {
-                  label: '本月',
-                  value: 3,
-              },
-              {
-                  label: '指定日期段',
-                  value: -1,
-                  type: 'component',
-                  component: 'pyh-rdtpicker',
-              },
-          ],
-      }]
-  ```
+          {
+              label: '本周',
+              value: 2,
+          },
+          {
+              label: '本月',
+              value: 3,
+          },
+          {
+              label: '指定日期段',
+              value: -1,
+              type: 'component',
+              component: 'pyh-rdtpicker',
+          },
+      ],
+  }]
+```
 
   
 
